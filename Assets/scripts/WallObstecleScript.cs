@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class WallObstecleScript : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        var direction = transform.position - other.transform.position;
-
-        other.attachedRigidbody.AddForce(direction*-5, ForceMode.Impulse);
+        if (collision.gameObject.layer == 8)
+        {
+            var direction = collision.gameObject.transform.position - transform.position;
+            collision.collider.attachedRigidbody.AddForce(direction.normalized * 15, ForceMode.Impulse);
+        }
     }
 }

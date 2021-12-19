@@ -6,8 +6,7 @@ public class SpringScript : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        var direction = transform.position - other.transform.position;
-
-        other.attachedRigidbody.AddForce(new Vector3(0,0, 2), ForceMode.Impulse);
+        var direction = Vector3.zero - other.transform.position;
+        other.attachedRigidbody.AddForce(direction.normalized * 2, ForceMode.Impulse);
     }
 }
